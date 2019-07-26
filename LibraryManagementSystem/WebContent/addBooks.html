@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<style>
+body
+	{
+	 	color: #404040;
+  background: #0ca3d2;
+	}
+	
+	.addBooks {
+  position: relative;
+  margin: 240px auto;
+  padding: 20px 20px 20px;
+  width: 310px;
+  background: white;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+</style>
+</head>
+
+<body>
+<a href="WelcomeUser.html"> <h3>Home page</h3></a>
+<div class="addBooks">
+<center>
+<h1>Add Books Here!!!</h1>
+<div class="bookimg1">
+<img border="0" src="images/book1.jpg"
+     alt="Pulpit rock" width="304" height="228">
+</div>
+
+
+		
+	
+
+<form method="post">
+	<table>		
+	
+
+<tr><td>Book Name</td><td><input type="text" name="book" id="book"/></td></tr>
+		
+		<tr><td>AuthorName</td><td><input type="text" name="author" id="author"/></td></tr>
+		
+			<tr><td>Publication Name</td><td><input type="publication" name="publication" id="publication"/></td></tr>
+		
+		<tr><td></td><td><input type="submit" id="submit" value="SUBMIT" /></td></tr>
+		
+		<label id="message"></label>
+</table>
+</form>
+	
+	
+	</center>
+	</div>
+	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+	
+	$(document).ready(function() {
+		 //On Button Click
+		 $("#submit").click(function() {
+	
+			 //Get Text box values
+		 var  book = $("#book").val();
+		 var author = $("#author").val();
+		 var publication = $("#publication").val();
+		 
+		 $.ajax({
+			
+		 url : './InsertBooks?book='+book+"&author="+author+"&publication="+publication,
+		 dataType : "json",
+		 type : "Post",
+		 
+		 success : function(result) {
+		 			$("#message").text(result);
+		 //Clear Textbox data
+		 $("#book").val('');
+		 $("#author").val('');
+		 $("#publication").val('');
+		 },
+		 
+		 error : function(responseText) {
+		 alert("error");
+		    }
+		 
+		 });
+		 
+		 });
+		 
+		});
+
+	</script>
+
+	
+	
+	
+</body>
+</html>
